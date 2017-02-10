@@ -1,0 +1,2 @@
+class UserJogo < ActiveRecord::Base
+end

@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @user.nome %>
+</p>
+
+<p>
+  <strong>Jogos - Consoles:</strong>
+    <% @user.user_jogos.each do |user_jogo| %>
+      <% if @user.id == user_jogo.user_id %>
+        <% Jogo.all.each do |jogo| %>      
+          <% if user_jogo.jogo_id == jogo.id %>
+            <p><%= jogo.nome %> - <%= jogo.console.nome %> </p>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

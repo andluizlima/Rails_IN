@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Livros</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Autor</th>
+      <th>Qtdpaginas</th>
+      <th>Sinopse</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @livros.each do |livro| %>
+      <tr id="linha_<%= livro.id %>">
+        <td><%= livro.titulo %></td>
+        <td><%= livro.autor %></td>
+        <td><%= livro.qtdPaginas %></td>
+        <td><%= livro.sinopse %></td>
+        <td><%= link_to 'Show', livro %></td>
+        <td><%= link_to 'Edit', edit_livro_path(livro) %></td>
+        <td><%= link_to 'Destroy', livro, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, id: "botao_#{livro.id}" %></td>
+      </tr>
+      <script>
+        $('botao_' + <%= livro.id %> ).on("click", function(){
+          $('#linha_' + <%= livro.id %>).remove();
+        });
+      </script>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Livro', new_livro_path %>
